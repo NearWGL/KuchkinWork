@@ -1,0 +1,13 @@
+MSI@WINCTRL-6L4E669 MINGW64 /d/Учебная практика (master)
+$ git log
+commit 47631b080574ad38e3481b0feb097f964d0cbd81
+Author: Alexey <alexey.kuchkin@gmail.com>
+Date:   Sat Feb 13 15:02:20 2016 +0300
+
+    Add status.txt
+
+commit f75019f1e9cd408030362e13d96f007e425d5048
+Author: Alexey <alexey.kuchkin@gmail.com>
+Date:   Sat Feb 13 15:00:34 2016 +0300
+
+    Add .gitignore
