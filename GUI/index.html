@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Chat</title>
+        <meta charset="utf-8">
+        <link type="text/css" rel="stylesheet" href="style.css" />
+        <script src = "script.js"></script>
+    </head>
+    <body>
+        <div id="cont">
+            <div id="menu">
+                <div id="welcome">Welcome to chat!</div>
+
+                <div id="upButtons">
+                    Login: <input id="ulogin" type="login" name="userlogin" />
+                    <!-- Password: <input id="upass" type="password" name="userpass">
+                    <input id="togglePassBtn" type="button" onclick = togglePassword() value="Show Password Characters"> -->
+                    <input id="loginBtn" type="button" onclick = login() value="Login" />
+                    <input name="logoutbtn" type="button" onclick = logout() value="Logout" />
+                    <input name="renamebtn" type="button" onclick = rename() value="Rename" />
+                    <input id="toggleLoginBtn" type="button" onclick = toggleLogin() value="Show Login" />
+                </div>
+            </div>
+      
+            <div id="chatbox">
+                <table id = "messageTable">
+                    <tr>
+                        <th>     </th>
+                        <th>Login</th>   
+                        <th>Message</th>
+                        <th>Send time</th>
+                        <th>Year</th>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="message">
+                <input name="usermsg" type="text" id="usermsg" size="63" />
+                <input name="sendmsg" type="button"  id="sendmsg" onclick = send() value="Send" />
+                <input name="deletemessagebtn" type="button" onclick = deleteMessage() value="Delete" />
+                <input name="overwritemessagebtn" type="button" onclick = overwriteMessage() value="Edit" />
+                <input id="serverBtn" type="button" onclick = server() value="Server" />
+            </div>
+        </div>
+    </body>
+</html>

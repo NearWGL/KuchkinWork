@@ -1,0 +1,75 @@
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 18px;
+    background: url(http://i.imgur.com/MQB99sg.jpg);
+    color: #222;
+    text-align:center;
+    padding:5% 5% 5% 5%;; 
+}
+
+table{
+    width: 100%;
+    padding:1% 3% 1% 3%; 
+}
+
+td {
+    text-align: center;
+    box-sizing: 50px 50px 50px 50px;
+     border: 2px solid #96EFFD;
+     border-radius: 8px;
+    background: #F8DDF2;
+}
+input[type="button"] {
+              background: -moz-linear-gradient(#D0ECF4, #5BC9E1, #D0ECF4);
+               background: -webkit-gradient(linear, 0 0, 0  100%, from(#D0ECF4), to(#D0ECF4), color-stop(0.5, #5BC9E1));
+               filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00BBD6', endColorstr='#EBFFFF');
+               padding: 3px 7px;
+               color: #333;
+               -moz-border-radius: 5px;
+               -webkit-border-radius: 5px;
+               border-radius: 5px;
+               border: 1px solid #666;   
+}
+
+#cont{
+    border-radius: 10px;
+    margin:0 auto;
+    padding: 1% 3% 1% 3%;
+    background: url(hellraisers-cs-go-team.jpg);
+    background-position:center; 
+    background-size: cover;
+    margin: ;
+    width: 90%;
+    border:1px solid #ACD8F0; 
+}
+  
+#chatbox {
+    border-radius: 10px;
+    margin:0 auto;
+    padding:1% 3% 1% 3%;
+    background:#fff;
+    height:75%;
+    width:90%;
+    border:1px solid #ACD8F0;
+    overflow:auto; 
+}
+  
+#menu { padding: 1% 3% 1% 3%; 
+        height: 8%;
+}
+
+#message {
+    padding:1% 3% 1% 3%; ; 
+}
+  
+#welcome { float:center; }
+
+#upButtons {
+    float: center;
+}
+#serverBtn {
+    float: left;
+}
+#toggleLoginBtn{
+    float:right;
+}

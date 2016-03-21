@@ -1,8 +1,5 @@
 package alexkuch;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 

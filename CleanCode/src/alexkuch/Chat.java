@@ -1,7 +1,5 @@
 package alexkuch;
 
-import jdk.nashorn.internal.ir.debug.JSONWriter;
-
 import javax.json.*;
 import java.util.UUID;
 import java.io.*;
@@ -12,10 +10,6 @@ import java.util.regex.Pattern;
 public class Chat implements UserInterface {
     public LinkedList<Message> chat;
     public LinkedList<String> logs;
-
-    public Chat(LinkedList<Message> chat) {
-        this.chat = chat;
-    }
 
     public Chat() {
         this.chat = new LinkedList<>();
@@ -32,59 +26,11 @@ public class Chat implements UserInterface {
 
         }
 
-        public Message(UUID id, String author, long timestamp, String message) {
-            this.id = id;
-            this.author = author;
-            this.timestamp = timestamp;
-            this.message = message;
-        }
-
         public Message(String author, String message) {
             id = UUID.randomUUID();
             this.author = author;
             this.message = message;
             timestamp = new Date().getTime();
-        }
-
-        public Message(UUID id) {
-            this.id = id;
-        }
-
-        public UUID getId() {
-            return id;
-        }
-
-        public String getAuthor() {
-            return author;
-        }
-
-        public long getTimestamp() {
-            return timestamp;
-        }
-
-        public String getMessage() {
-            return message;
-        }
-
-        public void setId(UUID id) {
-            this.id = id;
-        }
-
-        public UUID generatID() {
-            id = UUID.randomUUID();
-            return id;
-        }
-
-        public void setAuthor(String author) {
-            this.author = author;
-        }
-
-        public void setTimestamp() {
-            timestamp = new Date().getTime();
-        }
-
-        public void setMessage(String massage) {
-            this.message = message;
         }
 
         public Message parseFromJson(JsonObject jsonObject) {
@@ -113,10 +59,6 @@ public class Chat implements UserInterface {
                     ", message='" + message + '\'' +
                     '}';
         }
-    }
-
-    public LinkedList<Message> getChat() {
-        return chat;
     }
 
     @Override
@@ -154,8 +96,8 @@ public class Chat implements UserInterface {
             }
             outStream.println(builder.build() + "\n");
             logs.add(string);
-            for(int i = 0; i < logs.size(); ++i){
-                outStream.println(logs.get(i) + "\n");
+            for (String log : logs) {
+                outStream.println(log + "\n");
             }
             outStream.close();
         }
@@ -228,7 +170,7 @@ public class Chat implements UserInterface {
             for (int i = 0; i < b; ++i) {
                 System.out.println("Please write an ID you want to delete:");
                 String str = sc.readLine();
-                if(isUUID(str) == true) {
+                if(isUUID(str)) {
                     UUID ID = UUID.fromString(str);
                     for (int j = 0; j < chat.size(); ++j) {
                         if (chat.get(j).id.equals(ID)) {
@@ -257,8 +199,8 @@ public class Chat implements UserInterface {
     @Override
     public void watchHistory(){
         writeToFile("input.txt", "Watch of the History in chronological order");
-        for(int i = 0; i < chat.size(); ++i){
-            System.out.println(chat.get(i).toString());
+        for (Message aChat : chat) {
+            System.out.println(aChat.toString());
         }
     }
     @Override
@@ -268,10 +210,10 @@ public class Chat implements UserInterface {
             System.out.println("Print an author by whom you want to search");
             String str = sc.readLine();
             int count = 0;
-            for(int i= 0; i < chat.size(); ++i){
-                if (chat.get(i).author.equals(str)){
-                    System.out.println(chat.get(i));
-                    count ++;
+            for (Message aChat : chat) {
+                if (aChat.author.equals(str)) {
+                    System.out.println(aChat);
+                    count++;
                 }
             }
             writeToFile("input.txt", count + " searching messages");
@@ -280,6 +222,7 @@ public class Chat implements UserInterface {
             }
         }
         catch (Exception e){
+            System.out.println("Error");
         }
     }
     @Override
@@ -289,10 +232,10 @@ public class Chat implements UserInterface {
             System.out.println("Print a word by which you want to search");
             String str = sc.readLine();
             int count = 0;
-            for(int i= 0; i < chat.size(); ++i){
-                if (chat.get(i).toString().contains(str)){
-                    System.out.println(chat.get(i));
-                    count ++;
+            for (Message aChat : chat) {
+                if (aChat.toString().contains(str)) {
+                    System.out.println(aChat);
+                    count++;
                 }
             }
             writeToFile("input.txt", count + " searching messages");
@@ -301,27 +244,24 @@ public class Chat implements UserInterface {
             }
         }
         catch (Exception e){
+            System.out.println("Error");
         }
 
     }
-    public static boolean checkWithRegExp(String regex, String userNameString){
-        Pattern p = Pattern.compile(regex);
-        Matcher m = p.matcher(userNameString);
-        return m.matches();
-    }
+
     @Override
     public void searchByLecs(){
         try {
             BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Print an author by whom you want to search");
+            System.out.println("Print an regex by whom you want to search");
             String str = sc.readLine();
             Pattern pt = Pattern.compile(str);
             int count = 0;
-            for(int i= 0; i < chat.size(); ++i){
-                Matcher mt = pt.matcher(chat.get(i).toString());
-                if (mt.find()){
-                    System.out.println(chat.get(i));
-                    count ++;
+            for (Message aChat : chat) {
+                Matcher mt = pt.matcher(aChat.toString());
+                if (mt.find()) {
+                    System.out.println(aChat);
+                    count++;
                 }
             }
             writeToFile("input.txt", count + " searching messages");
@@ -330,6 +270,7 @@ public class Chat implements UserInterface {
             }
         }
         catch (Exception e){
+            System.out.println("Error");
         }
 
     }
@@ -344,10 +285,10 @@ public class Chat implements UserInterface {
             long a = Long.valueOf(str);
             long b = Long.valueOf(str2);
             int count = 0;
-            for(int i= 0; i < chat.size(); ++i){
-                if (chat.get(i).timestamp >= a & chat.get(i).timestamp <= b){
-                    System.out.println(chat.get(i));
-                    count ++;
+            for (Message aChat : chat) {
+                if (aChat.timestamp >= a & aChat.timestamp <= b) {
+                    System.out.println(aChat);
+                    count++;
                 }
             }
             writeToFile("input.txt", count + " searching messages");
@@ -356,6 +297,7 @@ public class Chat implements UserInterface {
             }
         }
         catch (Exception e){
+            System.out.println("Error");
         }
     }
     public void help(){
